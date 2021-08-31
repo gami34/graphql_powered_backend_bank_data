@@ -14,51 +14,24 @@ Follow the guide below starting from scratch, or see the example live on StackBl
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/json-graphql-server)
 
-First Create a mock storage of financial data `npm run generate-db` this will create the `database.json` file.
-
 This data file export an object where the keys are the entity types. The values should be lists of entities, i.e. arrays of value objects with at least an `id` key. For instance:
-
-```database.json
-{
-    posts: [
-        { id: 1, title: "Lorem Ipsum", views: 254, user_id: 123 },
-        { id: 2, title: "Sic Dolor amet", views: 65, user_id: 456 },
-    ],
-    users: [
-        { id: 123, name: "John Doe" },
-        { id: 456, name: "Jane Doe" }
-    ],
-    comments: [
-        { id: 987, post_id: 1, body: "Consectetur adipiscing elit", date: new Date('2017-07-03') },
-        { id: 995, post_id: 1, body: "Nam molestie pellentesque dui", date: new Date('2017-08-17') }
-    ]
-}
-```
 
 Start the GraphQL server on localhost, port 3000.
 
 ```sh
-json-graphql-server database.json
+json-graphql-server db.js
 ```
 
-To use a port other than 3000, you can run `json-graphql-server database.json --p <your port here>`
-To use a host other than localhost, you can run `json-graphql-server database.json --h <your host here>`
+To use a port other than 3000, you can run `json-graphql-server db.js --p <your port here>`
+To use a host other than localhost, you can run `json-graphql-server db.js --h <your host here>`
 
 Now you can query your data in graphql. For instance, to issue the following query:
 
 ```graphql
 {
-    Post(id: 1) {
+    allTransactions {
         id
-        title
-        views
-        User {
-            name
-        }
-        Comments {
-            date
-            body
-        }
+        account_id
     }
 }
 ```
@@ -68,24 +41,23 @@ Go to http://localhost:3000/?query=%7B%20Post%28id%3A%201%29%20%7B%20id%20title%
 ```json
 {
     "data": {
-        "Post": {
-            "id": "1",
-            "title": "Lorem Ipsum",
-            "views": 254,
-            "User": {
-                "name": "John Doe"
+        "allTransactions": [
+            {
+                "id": "1",
+                "amount": "543.56",
+                "type": "credit"
             },
-            "Comments": [
-                {
-                    "date": "2017-07-03T00:00:00.000Z",
-                    "body": "Consectetur adipiscing elit"
-                },
-                {
-                    "date": "2017-08-17T00:00:00.000Z",
-                    "body": "Nam molestie pellentesque dui"
-                }
-            ]
-        }
+            {
+                "id": "2",
+                "amount": "345.61",
+                "type": "debit"
+            },
+            {
+                "id": "3",
+                "amount": "882.99",
+                "type": "credit"
+            }
+        ]
     }
 }
 ```
