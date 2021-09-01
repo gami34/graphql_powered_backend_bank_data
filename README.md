@@ -1,20 +1,13 @@
 # 10 Hours Lab GraphQL Server Forked from json-graphql-server
 
+
 ## Motivation
 
 > This is a simple graphQl mock server and playground to get running with your task
 
 Start playing with GraphQL right away with `json-graphql-server`, a testing and mocking tool for GraphQL. All it takes is a JSON of your data.
 
-Inspired by the excellent [json-server](https://github.com/typicode/json-server).
-
 ## Example
-
-Follow the guide below starting from scratch, or see the example live on StackBlitz:
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/json-graphql-server)
-
-This data file export an object where the keys are the entity types. The values should be lists of entities, i.e. arrays of value objects with at least an `id` key. For instance:
 
 Start the GraphQL server on localhost, port 3000.
 
@@ -25,39 +18,19 @@ json-graphql-server db.js
 To use a port other than 3000, you can run `json-graphql-server db.js --p <your port here>`
 To use a host other than localhost, you can run `json-graphql-server db.js --h <your host here>`
 
-Now you can query your data in graphql. For instance, to issue the following query:
+Try issuing the following query:
 
 ```graphql
 {
     allTransactions {
         id
         account_id
-    }
-}
-```
-
-Go to http://localhost:3000/?query=%7B%20Post%28id%3A%201%29%20%7B%20id%20title%20views%20User%20%7B%20name%20%7D%20Comments%20%7B%20date%20body%20%7D%20%7D%20%7D. You'll get the following result:
-
-```json
-{
-    "data": {
-        "allTransactions": [
-            {
-                "id": "1",
-                "amount": "543.56",
-                "type": "credit"
-            },
-            {
-                "id": "2",
-                "amount": "345.61",
-                "type": "debit"
-            },
-            {
-                "id": "3",
-                "amount": "882.99",
-                "type": "credit"
-            }
-        ]
+        amount
+      	Account {
+          id
+          first_name
+          last_name
+        }
     }
 }
 ```
