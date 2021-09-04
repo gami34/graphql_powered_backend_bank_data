@@ -37,6 +37,8 @@ function generateTransactions(counts) {
             type: faker.helpers.randomize(TRANSACTION_TYPES),
             amount: faker.finance.amount(),
             branch: faker.helpers.randomize(BRANCHES),
+            created_at: faker.date.recent(faker.datatype.number(1000)),
+            updated_at: faker.date.recent(faker.datatype.number(1000)),
         });
     }
     return transactions;
