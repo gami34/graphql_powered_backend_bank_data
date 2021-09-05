@@ -39,8 +39,6 @@ The json-graphql-server accepts queries in GET and POST. Under the hood, it uses
 
 Note that the server is [GraphiQL](https://github.com/graphql/graphiql) enabled, so you can query your server using a full-featured graphical user interface, providing autosuggest, history, etc.
 
-![GraphiQL client using json-graphql-server](http://static.marmelab.com/graphiql-json.png)
-
 How to Use
 
 ## Clone this Repo
