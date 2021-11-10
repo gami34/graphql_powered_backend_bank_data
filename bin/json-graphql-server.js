@@ -7,8 +7,8 @@ var JsonGraphqlServer = require('../lib/json-graphql-server.node.min').default;
 
 var dataFilePath = process.argv.length > 2 ? process.argv[2] : './data.json';
 var data = require(path.join(process.cwd(), dataFilePath));
-var PORT = process.env.NODE_PORT || 8080;
-var HOST = process.env.NODE_HOST || 'localhost';
+var PORT = process.env.PORT || 8080;
+var HOST = process.env.HOST || 'localhost';
 var app = express();
 
 process.argv.forEach((arg, index) => {
